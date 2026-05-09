@@ -19,7 +19,7 @@ function AdminUsers() {
     }
 
     fetchUsers();
-  }, []);
+  }, [navigate, user.role]);
 
   const fetchUsers = async () => {
     try {

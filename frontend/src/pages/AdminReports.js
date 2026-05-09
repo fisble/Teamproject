@@ -19,7 +19,7 @@ function AdminReports() {
     }
 
     fetchAllReports();
-  }, []);
+  }, [navigate, user.role]);
 
   const fetchAllReports = async () => {
     try {

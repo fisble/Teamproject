@@ -19,7 +19,7 @@ function AdminUserReports() {
     }
 
     fetchUserReports();
-  }, [userId]);
+  }, [userId, navigate, user.role, fetchUserReports]);
 
   const fetchUserReports = async () => {
     try {

@@ -18,7 +18,7 @@ function AdminDashboard() {
     }
 
     fetchDashboardStats();
-  }, []);
+  }, [navigate, user.role]);
 
   const fetchDashboardStats = async () => {
     try {
