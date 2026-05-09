@@ -12,7 +12,7 @@
   },
   "scripts": {
     "start": "set NODE_OPTIONS=--openssl-legacy-provider && npm run build-win",
-    "build": "react-scripts build",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "build-win": "set DANGEROUSLY_DISABLE_HOST_CHECK=true && react-scripts start"
