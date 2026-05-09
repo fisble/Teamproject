@@ -12,6 +12,7 @@ function AdminReports() {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem('user') || '{}');
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (user.role !== 'admin') {
       navigate('/admin/login');
@@ -19,7 +20,7 @@ function AdminReports() {
     }
 
     fetchAllReports();
-  }, [navigate, user.role]);
+  }, []);
 
   const fetchAllReports = async () => {
     try {
