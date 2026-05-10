@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import { adminGetUserReports } from '../services/api';
 import '../styles/Dashboard.css';
@@ -12,16 +12,7 @@ function AdminUserReports() {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem('user') || '{}');
 
-  useEffect(() => {
-    if (user.role !== 'admin') {
-      navigate('/admin/login');
-      return;
-    }
-
-    fetchUserReports();
-  }, [userId, navigate, user.role]);
-
-  const fetchUserReports = async () => {
+  const fetchUserReports = useCallback(async () => {
     try {
       setLoading(true);
       const response = await adminGetUserReports(userId);
@@ -32,7 +23,16 @@ function AdminUserReports() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [userId]);
+
+  useEffect(() => {
+    if (user.role !== 'admin') {
+      navigate('/admin/login');
+      return;
+    }
+
+    fetchUserReports();
+  }, [userId, navigate, user.role, fetchUserReports]);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
